@@ -15,6 +15,18 @@ final class NewsView: UIViewController {
         setupLayout()
         setupBehaviour()
         registerCell()
+        
+        let url = URL(string: "https://newsapi.org/v2/top-headlines/sources?apiKey=3368ec761a404c6b94722e42644d9d6d")!
+        
+        let networkService = NetworkService()
+        networkService.fetchData(url: url) { (result: Result<NewsItem, Error>) in
+            switch result {
+            case .success(let data):
+                print(data)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
