@@ -9,7 +9,7 @@ final class NetworkService {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             
-            if let error = error {
+            if error != nil {
                 completion(.failure(NetworkError.invalidURL))
                 return
             }
@@ -19,8 +19,12 @@ final class NetworkService {
                 return
             }
             
-            print("Данные получены")
-            
+            do {
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                completion(.success(decodedData))
+            } catch {
+                completion(.failure(NetworkError.decodingError))
+            }
         }.resume()
     }
 }

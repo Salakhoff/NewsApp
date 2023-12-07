@@ -13,10 +13,10 @@
 		17FC76582B1E3DDE00198272 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17FC76562B1E3DDE00198272 /* LaunchScreen.storyboard */; };
 		17FC76672B1E410500198272 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC76662B1E410500198272 /* NewsView.swift */; };
 		17FC76692B1E495C00198272 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC76682B1E495C00198272 /* NewsPresenter.swift */; };
-		17FC766C2B1E4B3900198272 /* NewsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC766B2B1E4B3900198272 /* NewsRepository.swift */; };
 		17FC766E2B1E663700198272 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC766D2B1E663700198272 /* NewsItem.swift */; };
 		17FC76702B1EF52800198272 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC766F2B1EF52800198272 /* NetworkService.swift */; };
 		17FC76722B20418A00198272 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC76712B20418A00198272 /* NetworkError.swift */; };
+		17FC76742B21910900198272 /* NewsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC76732B21910900198272 /* NewsAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +28,10 @@
 		17FC76592B1E3DDE00198272 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17FC76662B1E410500198272 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		17FC76682B1E495C00198272 /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
-		17FC766B2B1E4B3900198272 /* NewsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRepository.swift; sourceTree = "<group>"; };
 		17FC766D2B1E663700198272 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		17FC766F2B1EF52800198272 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		17FC76712B20418A00198272 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		17FC76732B21910900198272 /* NewsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +105,7 @@
 				17FC76652B1E406500198272 /* Model */,
 				17FC76642B1E405700198272 /* Presenter */,
 				17FC76632B1E405200198272 /* View */,
+				17FC76732B21910900198272 /* NewsAssembly.swift */,
 			);
 			path = NewsModule;
 			sourceTree = "<group>";
@@ -136,7 +137,6 @@
 		17FC766A2B1E4B1300198272 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				17FC766B2B1E4B3900198272 /* NewsRepository.swift */,
 				17FC766F2B1EF52800198272 /* NetworkService.swift */,
 				17FC76712B20418A00198272 /* NetworkError.swift */,
 			);
@@ -219,7 +219,7 @@
 				17FC764C2B1E3DDC00198272 /* AppDelegate.swift in Sources */,
 				17FC764E2B1E3DDC00198272 /* SceneDelegate.swift in Sources */,
 				17FC76692B1E495C00198272 /* NewsPresenter.swift in Sources */,
-				17FC766C2B1E4B3900198272 /* NewsRepository.swift in Sources */,
+				17FC76742B21910900198272 /* NewsAssembly.swift in Sources */,
 				17FC76702B1EF52800198272 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

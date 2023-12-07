@@ -1,6 +1,15 @@
 import UIKit
 
+protocol NewsViewProtocol: AnyObject {
+    func updateNews(_ news: NewsItem)
+    func showError(message: String)
+}
+
 final class NewsView: UIViewController {
+    
+    // MARK: Properties
+    
+    var presenter: NewsPresenter?
     
     // MARK: UI
     
@@ -16,17 +25,7 @@ final class NewsView: UIViewController {
         setupBehaviour()
         registerCell()
         
-        let url = URL(string: "https://newsapi.org/v2/top-headlines/sources?apiKey=3368ec761a404c6b94722e42644d9d6d")!
-        
-        let networkService = NetworkService()
-        networkService.fetchData(url: url) { (result: Result<NewsItem, Error>) in
-            switch result {
-            case .success(let data):
-                print(data)
-            case .failure(let error):
-                print(error)
-            }
-        }
+        presenter?.fetchData()
     }
 }
 
@@ -91,6 +90,7 @@ private extension NewsView {
 }
 
 // MARK: - SetupAppearance
+
 private extension NewsView {
     func setupAppearance() {
         title = "News"
@@ -98,6 +98,18 @@ private extension NewsView {
         
         newsTableView.backgroundColor = .clear
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+}
+
+extension NewsView: NewsViewProtocol {
+    func updateNews(_ news: NewsItem) {
+        print("Данные получены!")
+        print(news)
+    }
+    
+    func showError(message: String) {
+        print("Ошибка!")
+        print(message)
     }
 }
 
