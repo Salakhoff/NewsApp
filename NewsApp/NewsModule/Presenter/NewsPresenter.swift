@@ -16,7 +16,7 @@ final class NewsPresenter: NewsPresenterProtocol {
     
     func fetchData() {
         guard let url = URL(
-            string: "https://newsapi.org/v2/top-headlines/sources?apiKey=3368ec761a404c6b94722e42644d9d6d"
+            string: "https://newsapi.org/v2/everything?q=apple&from=2023-12-06&to=2023-12-06&sortBy=popularity&apiKey=3368ec761a404c6b94722e42644d9d6d"
         ) else {
             return
         }
@@ -25,7 +25,7 @@ final class NewsPresenter: NewsPresenterProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.view?.updateNews(data.sources)
+                self.view?.updateNews(data.articles)
             case .failure(let error):
                 print("Ошибка. \(error.localizedDescription)")
             }

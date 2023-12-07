@@ -1,7 +1,7 @@
 import UIKit
 
 protocol NewsViewProtocol: AnyObject {
-    func updateNews(_ news: [News])
+    func updateNews(_ news: [Article])
     func showError(message: String)
     
     func updateView()
@@ -12,7 +12,7 @@ final class NewsView: UIViewController {
     // MARK: Properties
     
     var presenter: NewsPresenterProtocol?
-    private var newsData: [News]?
+    private var newsData: [Article]?
     
     // MARK: UI
     
@@ -35,7 +35,9 @@ final class NewsView: UIViewController {
 // MARK: - UITableViewDelegate
 
 extension NewsView: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -46,8 +48,15 @@ extension NewsView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = newsData?[indexPath.row].name
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: CellIdentifiers.cellIdentifier,
+            for: indexPath
+        ) as? NewsViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.updateValue(newsData?[indexPath.row])
+        
         return cell
     }
 }
@@ -88,7 +97,10 @@ private extension NewsView {
 
 private extension NewsView {
     func registerCell() {
-        newsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        newsTableView.register(
+            NewsViewCell.self,
+            forCellReuseIdentifier: CellIdentifiers.cellIdentifier
+        )
     }
 }
 
@@ -107,9 +119,8 @@ private extension NewsView {
 // MARK: - NewsViewProtocol
 
 extension NewsView: NewsViewProtocol {
-    func updateNews(_ news: [News]) {
+    func updateNews(_ news: [Article]) {
         newsData = news
-        print(newsData)
         updateView()
     }
     
@@ -123,4 +134,3 @@ extension NewsView: NewsViewProtocol {
         }
     }
 }
-
