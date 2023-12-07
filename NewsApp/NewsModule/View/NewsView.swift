@@ -1,15 +1,18 @@
 import UIKit
 
 protocol NewsViewProtocol: AnyObject {
-    func updateNews(_ news: NewsItem)
+    func updateNews(_ news: [News])
     func showError(message: String)
+    
+    func updateView()
 }
 
 final class NewsView: UIViewController {
     
     // MARK: Properties
     
-    var presenter: NewsPresenter?
+    var presenter: NewsPresenterProtocol?
+    private var newsData: [News]?
     
     // MARK: UI
     
@@ -39,12 +42,12 @@ extension NewsView: UITableViewDelegate {
 
 extension NewsView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        newsData?.count ?? 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath.row)"
+        cell.textLabel?.text = newsData?[indexPath.row].name
         return cell
     }
 }
@@ -101,15 +104,23 @@ private extension NewsView {
     }
 }
 
+// MARK: - NewsViewProtocol
+
 extension NewsView: NewsViewProtocol {
-    func updateNews(_ news: NewsItem) {
-        print("Данные получены!")
-        print(news)
+    func updateNews(_ news: [News]) {
+        newsData = news
+        print(newsData)
+        updateView()
     }
     
     func showError(message: String) {
-        print("Ошибка!")
-        print(message)
+        print("Ошибка")
+    }
+    
+    func updateView() {
+        DispatchQueue.main.async {
+            self.newsTableView.reloadData()
+        }
     }
 }
 

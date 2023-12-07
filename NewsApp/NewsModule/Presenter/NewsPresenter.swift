@@ -1,9 +1,13 @@
 import Foundation
 
-final class NewsPresenter {
+protocol NewsPresenterProtocol {
+    func fetchData()
+}
+
+final class NewsPresenter: NewsPresenterProtocol {
     
     weak var view: NewsViewProtocol?
-    private let networkService: NetworkService
+    private let networkService: NetworkServiceProtocol?
     
     init(view: NewsViewProtocol, networkService: NetworkService) {
         self.view = view
@@ -14,17 +18,16 @@ final class NewsPresenter {
         guard let url = URL(
             string: "https://newsapi.org/v2/top-headlines/sources?apiKey=3368ec761a404c6b94722e42644d9d6d"
         ) else {
-            print(NetworkError.invalidURL)
             return
         }
         
-        networkService.fetchData(url: url) { [weak self] (result: Result<NewsItem, Error>) in
+        networkService?.fetchData(url: url) { [weak self] (result: Result<NewsItem, Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.view?.updateNews(data)
+                self.view?.updateNews(data.sources)
             case .failure(let error):
-                print(error.localizedDescription)
+                print("Ошибка. \(error.localizedDescription)")
             }
         }
     }
