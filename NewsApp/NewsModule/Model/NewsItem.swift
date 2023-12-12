@@ -1,10 +1,10 @@
 import Foundation
 
-struct NewsItem: Decodable {
+struct NewsItem: Codable {
     let articles: [Article]
 }
 
-struct Article: Decodable {
+struct Article: Codable {
     let author: String?
     let title: String
     let description: String?

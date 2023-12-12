@@ -7,7 +7,7 @@ protocol NewsPresenterProtocol {
 final class NewsPresenter: NewsPresenterProtocol {
     
     weak var view: NewsViewProtocol?
-    private let networkService: NetworkServiceProtocol?
+    private let networkService: NetworkProtocol?
     
     init(view: NewsViewProtocol, networkService: NetworkService) {
         self.view = view
@@ -21,14 +21,34 @@ final class NewsPresenter: NewsPresenterProtocol {
             return
         }
         
-        networkService?.fetchData(url: url) { [weak self] (result: Result<NewsItem, Error>) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let data):
-                self.view?.updateNews(data.articles)
-            case .failure(let error):
-                print("Ошибка. \(error.localizedDescription)")
-            }
-        }
+        networkService?.fetchData(
+            url: url,
+            httpMethod: .get,
+            body: nil,
+            headers: nil,
+            completion: { [weak self] (result: Result<NewsItem, NetworkError>) in
+                guard let self else { return }
+                switch result {
+                case .success(let success):
+                    self.view?.updateNews(success.articles)
+                case .failure(let failure):
+                    DispatchQueue.main.async {
+                        switch failure {
+                        case .unknown(let description):
+                            print(description)
+                        case .badData:
+                            print("Ваши данные - плохие...")
+                        case .badResponse:
+                            print("Ответ плох...")
+                        case .badRequest:
+                            print("С запросом точно все ок?")
+                        case .badDecode:
+                            print("Не удалось декодировать")
+                        case .badEncode:
+                            print("Не удалось отправить...")
+                        }
+                    }
+                }
+            })
     }
 }

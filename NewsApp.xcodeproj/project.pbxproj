@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170594AF2B28DF4F00143541 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170594AE2B28DF4F00143541 /* HTTPMethod.swift */; };
 		172BA4F12B222A5700572A41 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172BA4F02B222A5700572A41 /* NewsViewCell.swift */; };
 		172BA4F32B22322400572A41 /* CellIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172BA4F22B22322400572A41 /* CellIdentifiers.swift */; };
 		17FC764C2B1E3DDC00198272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FC764B2B1E3DDC00198272 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		170594AE2B28DF4F00143541 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		172BA4F02B222A5700572A41 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 		172BA4F22B22322400572A41 /* CellIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIdentifiers.swift; sourceTree = "<group>"; };
 		17FC76482B1E3DDC00198272 /* NewsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +147,7 @@
 			children = (
 				17FC766F2B1EF52800198272 /* NetworkService.swift */,
 				17FC76712B20418A00198272 /* NetworkError.swift */,
+				170594AE2B28DF4F00143541 /* HTTPMethod.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				17FC76672B1E410500198272 /* NewsView.swift in Sources */,
 				17FC76722B20418A00198272 /* NetworkError.swift in Sources */,
 				17FC766E2B1E663700198272 /* NewsItem.swift in Sources */,
+				170594AF2B28DF4F00143541 /* HTTPMethod.swift in Sources */,
 				172BA4F12B222A5700572A41 /* NewsViewCell.swift in Sources */,
 				172BA4F32B22322400572A41 /* CellIdentifiers.swift in Sources */,
 				17FC764C2B1E3DDC00198272 /* AppDelegate.swift in Sources */,
